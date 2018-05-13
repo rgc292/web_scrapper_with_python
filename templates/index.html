@@ -1,0 +1,67 @@
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<head>
+</head>
+
+<body class = 'body'>
+    <h3>{{ title }}</h3>
+    <body>
+        <div> <h4 style='color:red'>{{ try_another_zip_code }}</h4>
+			<form class='navbar-form navbar-left' action='/' method='POST'>
+			  <div class="form-group">
+				<input type='text' name='zip_code' class='form-control' placeholder='{{ subtitle }}'>
+			  </div>
+			  <button type='submit' class='btn btn-primary'>Submit</button>
+			</form>
+		</div>
+		
+        </br>
+        </br>
+        </br>
+		
+		<div>
+			<div class="panel panel-default">
+				<!-- Default panel contents -->
+				<div class="panel-heading" style="text-align:center;"><h3>{{ count_data_to_display }} row(s) of <b>Property Feature Data (up to the first 27 properties)</b></h3></div>
+			
+				<!-- Table -->
+				<table class="table">
+				
+				    <tr>
+				        {% for heading in data_to_display %}
+						    {% if heading[0] == 'bed' %}
+								<th># of {{ data_to_display.0.0 }}(s)</th>
+								<th># of {{ data_to_display.0.1 }}(s)</th>
+								<th># of {{ data_to_display.0.2 }}(s)</th>
+								<th>{{ data_to_display.0.3 }}(1)</th>
+								<th>{{ data_to_display.0.4 }}(2)</th>
+								<th>{{ data_to_display.0.5 }}</th>
+								<th>{{ data_to_display.0.7 }}</th>
+							{% endif %}
+				        {% endfor %}
+				    </tr>
+				    
+				    {% for values in data_to_display %}
+				    <tr>
+						{% if values[0] != 'bed' %}
+							<td>{{ values.0 }}</td>
+							<td>{{ values.1 }}</td>
+							<td>{{ values.2 }}</td>
+							<td>${{ values.3 }}0</td>
+							<td>${{ values.4 }}0</td>
+							<td>{{ values.5 }}</td>
+							<td><a href='{{ values.7 }}'><img src='{{values.6}}' alt='No image'></a></td>
+						{% endif %}
+					</tr>
+					{% endfor %}
+					
+				</table>
+			</div>
+        </div>
+	</body>
+</body>
+
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+<script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'></script>
+
+</html>
